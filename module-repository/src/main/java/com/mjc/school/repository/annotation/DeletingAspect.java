@@ -22,7 +22,7 @@ public class DeletingAspect {
     public void deleteAllEntitiesWithId(Long id) {
         List<NewsModel> newsToDelete = repository.readAll()
                 .stream()
-                .filter(newsModel -> newsModel.getAuthorId().equals(id))
+                .filter(newsModel -> newsModel.getAuthorModel().getId().equals(id))
                 .toList();
         newsToDelete.forEach(newsModel -> repository.deleteById(newsModel.getId()));
     }

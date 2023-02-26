@@ -55,7 +55,7 @@ public class DataSource {
             LocalDateTime date = dateCreator();
             newsModels.add(new NewsModel((long) i, readFile("news"),
                     readFile("content"), date, date,
-                    authors.get(random.nextInt(authors.size())).getId()));
+                    authors.get(i)));
         }
         return newsModels;
     }

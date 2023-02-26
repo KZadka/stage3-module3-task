@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-26T09:36:06+0100",
+    date = "2023-02-26T16:56:30+0100",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.2.jar, environment: Java 17.0.2 (Oracle Corporation)"
 )
 public class NewsMapperImpl implements NewsMapper {
@@ -25,7 +25,6 @@ public class NewsMapperImpl implements NewsMapper {
         newsDtoResponse.setContent( newsModel.getContent() );
         newsDtoResponse.setCreateDate( newsModel.getCreateDate() );
         newsDtoResponse.setLastUpdateDate( newsModel.getLastUpdateDate() );
-        newsDtoResponse.setAuthorId( newsModel.getAuthorId() );
 
         return newsDtoResponse;
     }
@@ -41,7 +40,6 @@ public class NewsMapperImpl implements NewsMapper {
         newsModel.setId( newsDtoRequest.getId() );
         newsModel.setTitle( newsDtoRequest.getTitle() );
         newsModel.setContent( newsDtoRequest.getContent() );
-        newsModel.setAuthorId( newsDtoRequest.getAuthorId() );
 
         return newsModel;
     }

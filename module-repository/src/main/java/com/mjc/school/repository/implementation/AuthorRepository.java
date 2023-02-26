@@ -6,6 +6,8 @@ import com.mjc.school.repository.model.implementation.AuthorModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,9 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
 
     private final DataSource dataSource;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Autowired
     public AuthorRepository(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -22,6 +27,7 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
 
     @Override
     public List<AuthorModel> readAll() {
+//        entityManager.createQuery("SELECT ")
         return dataSource.getAuthors();
     }
 

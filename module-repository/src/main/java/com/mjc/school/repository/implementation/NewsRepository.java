@@ -51,7 +51,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
         newsModel.setTitle(entity.getTitle());
         newsModel.setContent(entity.getContent());
         newsModel.setLastUpdateDate(LocalDateTime.now());
-        newsModel.setAuthorId(entity.getAuthorId());
+//        newsModel.setAuthorId(entity.getAuthorId());
         return newsModel;
     }
 
