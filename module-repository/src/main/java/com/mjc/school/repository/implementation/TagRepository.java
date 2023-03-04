@@ -2,6 +2,7 @@ package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.model.implementation.TagModel;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceUnit;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class TagRepository implements BaseRepository<TagModel, Long> {
 
     @PersistenceUnit
