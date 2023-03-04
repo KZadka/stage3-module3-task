@@ -67,7 +67,6 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     }
 
     @Override
-    @OnDelete
     @ValidateNumber
     public boolean deleteById(Long id) {
         if (authorRepository.existById(id)) {
