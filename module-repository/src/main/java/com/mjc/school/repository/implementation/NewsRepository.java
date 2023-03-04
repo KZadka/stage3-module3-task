@@ -6,29 +6,33 @@ import com.mjc.school.repository.model.implementation.TagModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
 
     @Override
     public List<NewsModel> readAll() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.createQuery("SELECT n FROM NewsModel n", NewsModel.class)
                 .getResultList();
     }
 
     @Override
     public Optional<NewsModel> readById(Long id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         return Optional.ofNullable(entityManager.find(NewsModel.class, id));
     }
 
     @Override
     public NewsModel create(NewsModel entity) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
@@ -37,6 +41,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public NewsModel update(NewsModel entity) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         NewsModel updatedModel = entityManager.find(NewsModel.class, entity.getId());
         updatedModel.setTitle(entity.getTitle());
@@ -52,6 +57,7 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public boolean deleteById(Long id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         if (readById(id).isPresent()) {
             entityManager.getTransaction().begin();
             entityManager.remove(entityManager.find(NewsModel.class, id));

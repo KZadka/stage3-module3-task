@@ -16,3 +16,11 @@ Emodule-main/src/main/java/com/mjc/school/config/AppConfiguration.java,b\7\b7dd
 Umodule-service/src/main/java/com/mjc/school/service/implementation/AuthorService.java,d\9\d973914b609dc1f94f1152e517e5f759b03e586b
 à
 Xmodule-repository/src/main/java/com/mjc/school/repository/annotation/DeletingAspect.java,c\a\cacf9bfe48e73c56045bf43ab6549092922dd079
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+ç
+]module-repository/src/main/java/com/mjc/school/repository/model/implementation/NewsModel.java,a\9\a94e02f1d45113dbfc5e1a3acb0a513d819c6d80
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
