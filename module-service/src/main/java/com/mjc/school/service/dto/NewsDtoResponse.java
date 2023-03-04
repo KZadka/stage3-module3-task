@@ -111,6 +111,7 @@ public class NewsDtoResponse {
                 ", createDate=" + createDate +
                 ", lastUpdateDate=" + lastUpdateDate +
                 ", authorId=" + authorId +
+                ", tags=" + tags +
                 '}';
     }
 }
