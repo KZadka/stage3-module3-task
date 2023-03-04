@@ -1,9 +1,11 @@
 package com.mjc.school.service.dto;
 
+import com.mjc.school.repository.model.implementation.TagModel;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -15,16 +17,19 @@ public class NewsDtoResponse {
     private LocalDateTime createDate;
     private LocalDateTime lastUpdateDate;
     private Long authorId;
+    private List<TagModel> tags;
 
     public NewsDtoResponse(Long id, String title,
                            String content, LocalDateTime createDate,
-                           LocalDateTime lastUpdateDate, Long authorId) {
+                           LocalDateTime lastUpdateDate, Long authorId,
+                           List<TagModel> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.lastUpdateDate = lastUpdateDate;
         this.authorId = authorId;
+        this.tags = tags;
     }
 
     public NewsDtoResponse() {
@@ -76,6 +81,12 @@ public class NewsDtoResponse {
 
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
+    }
+
+    public List<TagModel> getTags() {return tags;}
+
+    public void setTags(List<TagModel> tags) {
+        this.tags = tags;
     }
 
     @Override
