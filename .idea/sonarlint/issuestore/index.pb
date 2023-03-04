@@ -12,8 +12,6 @@ N
 module-repository/build.gradle,0\3\038992c8542b635dde5f4fb3b14752550aec2090
 u
 Emodule-main/src/main/java/com/mjc/school/config/AppConfiguration.java,b\7\b7dd33c39ebafc68e4bd1faea27c0ccfae8b86f4
-ˆ
-Xmodule-repository/src/main/java/com/mjc/school/repository/annotation/DeletingAspect.java,c\a\cacf9bfe48e73c56045bf43ab6549092922dd079
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 <
