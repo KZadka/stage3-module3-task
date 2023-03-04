@@ -51,13 +51,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     @Override
     @ValidateAuthorParam
     public AuthorDtoResponse create(AuthorDtoRequest createRequest) {
-        AuthorModel authorModel = AuthorMapper.INSTANCE.authorDtoToModel(createRequest);
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-
-        authorModel.setCreateDate(date);
-        authorModel.setLastUpdateDate(date);
-        authorRepository.create(authorModel);
-
+        AuthorModel authorModel = authorRepository.create(AuthorMapper.INSTANCE.authorDtoToModel(createRequest));
         return AuthorMapper.INSTANCE.authorModelToDto(authorModel);
     }
 
@@ -65,12 +59,7 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     @ValidateAuthorParam
     public AuthorDtoResponse update(AuthorDtoRequest updateRequest) {
         if (authorRepository.existById(updateRequest.getId())) {
-            AuthorModel authorModel = AuthorMapper.INSTANCE.authorDtoToModel(updateRequest);
-
-            authorModel.setCreateDate(authorRepository.readById(updateRequest.getId()).get().getCreateDate());
-            authorModel.setLastUpdateDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
-            authorRepository.update(authorModel);
-
+            AuthorModel authorModel = authorRepository.update(AuthorMapper.INSTANCE.authorDtoToModel(updateRequest));
             return AuthorMapper.INSTANCE.authorModelToDto(authorModel);
         } else {
             throw new ResourceNotFoundException(2010, NON_EXISTED_ID);
