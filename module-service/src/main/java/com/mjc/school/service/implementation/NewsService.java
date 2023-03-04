@@ -50,13 +50,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @Override
     @ValidateNewsParam
     public NewsDtoResponse create(NewsDtoRequest createRequest) {
-        NewsModel newsModel = NewsMapper.INSTANCE.newsDtoToModel(createRequest);
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-
-        newsModel.setCreateDate(date);
-        newsModel.setLastUpdateDate(date);
-        newsRepository.create(newsModel);
-
+        NewsModel newsModel = newsRepository.create(NewsMapper.INSTANCE.newsDtoToModel(createRequest));
         return NewsMapper.INSTANCE.newsModelToDto(newsModel);
     }
 
@@ -64,12 +58,7 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @ValidateNewsParam
     public NewsDtoResponse update(NewsDtoRequest updateRequest) {
         if (newsRepository.existById(updateRequest.getId())) {
-            NewsModel newsModel = NewsMapper.INSTANCE.newsDtoToModel(updateRequest);
-
-            newsModel.setCreateDate(newsRepository.readById(updateRequest.getId()).get().getCreateDate());
-            newsModel.setLastUpdateDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
-            newsRepository.update(newsModel);
-
+            NewsModel newsModel = newsRepository.update(NewsMapper.INSTANCE.newsDtoToModel(updateRequest));
             return NewsMapper.INSTANCE.newsModelToDto(newsModel);
         } else {
             throw new ResourceNotFoundException(2010, NON_EXISTED_ID);
