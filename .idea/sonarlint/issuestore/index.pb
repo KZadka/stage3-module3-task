@@ -32,7 +32,3 @@ Jmodule-service/src/main/java/com/mjc/school/service/dto/TagDtoRequest.java,f\7
 Mmodule-service/src/main/java/com/mjc/school/service/dto/AuthorDtoRequest.java,7\8\783761345ce2dd95a3032562e42ecb28f5642e07
 {
 Kmodule-service/src/main/java/com/mjc/school/service/dto/TagDtoResponse.java,c\9\c98a8cb9e945d6ea00a8dd465619df32c063dbc4
-y
-Imodule-service/src/main/java/com/mjc/school/service/mapper/TagMapper.java,1\e\1ec673b7692d0f0c4a0362183729fbc4360e5930
-|
-Lmodule-service/src/main/java/com/mjc/school/service/mapper/AuthorMapper.java,e\6\e602fc47d4045db3a2abf1ee12a7f8b030ca16f4

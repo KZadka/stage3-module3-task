@@ -17,7 +17,7 @@ public class TagModel implements BaseEntity<Long> {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "tagModel", fetch = FetchType.LAZY)
     private List<NewsModel> news;
 
     public TagModel() {}
@@ -25,6 +25,10 @@ public class TagModel implements BaseEntity<Long> {
     public TagModel(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public TagModel(Long id) {
+        this.id = id;
     }
 
     @Override

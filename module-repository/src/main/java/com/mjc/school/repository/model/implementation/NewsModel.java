@@ -41,19 +41,19 @@ public class NewsModel implements BaseEntity<Long> {
     @JoinTable(name = "news_tag",
             joinColumns = @JoinColumn(name = "news_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<TagModel> tags;
+    private List<TagModel> tagModel;
 
     public NewsModel(Long id, String title,
                      String content, LocalDateTime createDate,
                      LocalDateTime lastUpdateDate, AuthorModel authorModel,
-                    List<TagModel> tags) {
+                    List<TagModel> tagModel) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.lastUpdateDate = lastUpdateDate;
         this.authorModel = authorModel;
-        this.tags = tags;
+        this.tagModel = tagModel;
     }
 
     public NewsModel() {
@@ -109,12 +109,12 @@ public class NewsModel implements BaseEntity<Long> {
         this.authorModel = authorModel;
     }
 
-    public List<TagModel> getTags() {
-        return tags;
+    public List<TagModel> getTagModel() {
+        return tagModel;
     }
 
-    public void setTags(List<TagModel> tags) {
-        this.tags = tags;
+    public void setTagModel(List<TagModel> tags) {
+        this.tagModel = tags;
     }
 
     @Override
@@ -128,11 +128,11 @@ public class NewsModel implements BaseEntity<Long> {
                 Objects.equals(createDate, newsModel.createDate) &&
                 Objects.equals(lastUpdateDate, newsModel.lastUpdateDate) &&
                 Objects.equals(authorModel, newsModel.authorModel) &&
-                Objects.equals(tags, newsModel.tags);
+                Objects.equals(tagModel, newsModel.tagModel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, createDate, lastUpdateDate, authorModel, tags);
+        return Objects.hash(id, title, content, createDate, lastUpdateDate, authorModel, tagModel);
     }
 }

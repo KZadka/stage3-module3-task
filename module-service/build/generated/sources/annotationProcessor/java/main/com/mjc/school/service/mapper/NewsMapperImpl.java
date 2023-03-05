@@ -2,16 +2,13 @@ package com.mjc.school.service.mapper;
 
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.repository.model.implementation.NewsModel;
-import com.mjc.school.repository.model.implementation.TagModel;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-05T19:01:02+0100",
+    date = "2023-03-05T20:09:04+0100",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.2.jar, environment: Java 17.0.2 (Oracle Corporation)"
 )
 public class NewsMapperImpl implements NewsMapper {
@@ -25,10 +22,7 @@ public class NewsMapperImpl implements NewsMapper {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
 
         newsDtoResponse.setAuthorId( newsModelAuthorModelId( newsModel ) );
-        List<TagModel> list = newsModel.getTags();
-        if ( list != null ) {
-            newsDtoResponse.setTags( new ArrayList<TagModel>( list ) );
-        }
+        newsDtoResponse.setTags( tagModelToId( newsModel.getTagModel() ) );
         newsDtoResponse.setId( newsModel.getId() );
         newsDtoResponse.setTitle( newsModel.getTitle() );
         newsDtoResponse.setContent( newsModel.getContent() );
@@ -46,6 +40,8 @@ public class NewsMapperImpl implements NewsMapper {
 
         NewsModel newsModel = new NewsModel();
 
+        newsModel.setAuthorModel( newsDtoRequestToAuthorModel( newsDtoRequest ) );
+        newsModel.setTagModel( tagIdToModel( newsDtoRequest.getTagsId() ) );
         newsModel.setId( newsDtoRequest.getId() );
         newsModel.setTitle( newsDtoRequest.getTitle() );
         newsModel.setContent( newsDtoRequest.getContent() );
@@ -66,5 +62,17 @@ public class NewsMapperImpl implements NewsMapper {
             return null;
         }
         return id;
+    }
+
+    protected AuthorModel newsDtoRequestToAuthorModel(NewsDtoRequest newsDtoRequest) {
+        if ( newsDtoRequest == null ) {
+            return null;
+        }
+
+        AuthorModel authorModel = new AuthorModel();
+
+        authorModel.setId( newsDtoRequest.getAuthorId() );
+
+        return authorModel;
     }
 }

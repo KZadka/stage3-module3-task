@@ -14,6 +14,7 @@ public interface TagMapper {
     TagDtoResponse tagModelToDto(TagModel tagModel);
 
     @Mappings(value = {@Mapping(target = "createDate", ignore = true),
-            @Mapping(target = "lastUpdateDate", ignore = true)})
+            @Mapping(target = "lastUpdateDate", ignore = true),
+            @Mapping(target = "news", ignore = true)})
     TagModel tagDtoToModel(TagDtoRequest tagDtoRequest);
 }
