@@ -45,13 +45,15 @@ public class NewsModel implements BaseEntity<Long> {
 
     public NewsModel(Long id, String title,
                      String content, LocalDateTime createDate,
-                     LocalDateTime lastUpdateDate, AuthorModel authorModel) {
+                     LocalDateTime lastUpdateDate, AuthorModel authorModel,
+                    List<TagModel> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.lastUpdateDate = lastUpdateDate;
         this.authorModel = authorModel;
+        this.tags = tags;
     }
 
     public NewsModel() {

@@ -5,6 +5,7 @@ import com.mjc.school.controller.utils.Utils;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CreateNewsCommand implements Command {
@@ -32,7 +33,9 @@ public class CreateNewsCommand implements Command {
                 String content = input.nextLine();
                 System.out.println("Enter author id:");
                 Long authorId = utils.userNumber(input);
-                request = new NewsDtoRequest(null, title, content, authorId);
+                System.out.println("Enter tag id:");
+                Long tagId = utils.userNumber(input);
+                request = new NewsDtoRequest(null, title, content, authorId, List.of(tagId));
                 isValid = true;
             } catch (Exception e) {
                 System.out.println(e.getMessage());

@@ -13,6 +13,8 @@ public interface NewsMapper {
 
     NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
 
+    @Mapping(target = "authorId", source = "authorModel.id")
+    @Mapping(target = "tags", source = "tags")
     NewsDtoResponse newsModelToDto(NewsModel newsModel);
 
     @Mappings(value = {@Mapping(target = "createDate", ignore = true),

@@ -2,6 +2,7 @@ package com.mjc.school.service.dto;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -11,12 +12,14 @@ public class NewsDtoRequest {
     private String title;
     private String content;
     private Long authorId;
+    private List<Long> tagsId;
 
-    public NewsDtoRequest(Long id, String title, String content, Long authorId) {
+    public NewsDtoRequest(Long id, String title, String content, Long authorId, List<Long> tagsId) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.authorId = authorId;
+        this.tagsId = tagsId;
     }
 
     public NewsDtoRequest() {
@@ -52,6 +55,14 @@ public class NewsDtoRequest {
 
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
+    }
+
+    public List<Long> getTagsId() {
+        return tagsId;
+    }
+
+    public void setTagsId(Long tagsId) {
+        this.tagsId.add(tagsId);
     }
 
     @Override
