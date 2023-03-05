@@ -47,9 +47,9 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
         updatedModel.setTitle(entity.getTitle());
         updatedModel.setContent(entity.getContent());
         updatedModel.setAuthorModel(entity.getAuthorModel());
-        List<TagModel> tagsToUpdate = entity.getTagModel();
+        List<TagModel> tagsToUpdate = entity.getTagModels();
         if (!tagsToUpdate.isEmpty()) {
-            updatedModel.setTagModel(tagsToUpdate);
+            updatedModel.setTagModels(tagsToUpdate);
         }
         entityManager.getTransaction().commit();
         return updatedModel;

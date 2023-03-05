@@ -18,7 +18,7 @@ public interface NewsMapper {
     NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
 
     @Mapping(target = "authorId", source = "authorModel.id")
-    @Mapping(target = "tags", source = "tagModel", qualifiedByName = "tagModelToId")
+    @Mapping(target = "tags", source = "tagModels", qualifiedByName = "tagModelToId")
     NewsDtoResponse newsModelToDto(NewsModel newsModel);
 
     @Named("tagModelToId")
@@ -33,7 +33,7 @@ public interface NewsMapper {
     @Mapping(target = "createDate", ignore = true)
     @Mapping(target = "lastUpdateDate", ignore = true)
     @Mapping(target = "authorModel.id", source = "authorId")
-    @Mapping(target = "tagModel", source = "tagsId", qualifiedByName = "tagIdToModel")
+    @Mapping(target = "tagModels", source = "tagsId", qualifiedByName = "tagIdToModel")
     NewsModel newsDtoToModel(NewsDtoRequest newsDtoRequest);
 
     @Named("tagIdToModel")

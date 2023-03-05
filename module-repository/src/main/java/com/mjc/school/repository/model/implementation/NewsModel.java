@@ -38,22 +38,22 @@ public class NewsModel implements BaseEntity<Long> {
     private AuthorModel authorModel;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "news_tag",
+    @JoinTable(name = "news_tags",
             joinColumns = @JoinColumn(name = "news_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<TagModel> tagModel;
+            inverseJoinColumns = @JoinColumn(name = "tags_id"))
+    private List<TagModel> tagModels;
 
     public NewsModel(Long id, String title,
                      String content, LocalDateTime createDate,
                      LocalDateTime lastUpdateDate, AuthorModel authorModel,
-                    List<TagModel> tagModel) {
+                    List<TagModel> tagModels) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.lastUpdateDate = lastUpdateDate;
         this.authorModel = authorModel;
-        this.tagModel = tagModel;
+        this.tagModels = tagModels;
     }
 
     public NewsModel() {
@@ -109,12 +109,12 @@ public class NewsModel implements BaseEntity<Long> {
         this.authorModel = authorModel;
     }
 
-    public List<TagModel> getTagModel() {
-        return tagModel;
+    public List<TagModel> getTagModels() {
+        return tagModels;
     }
 
-    public void setTagModel(List<TagModel> tags) {
-        this.tagModel = tags;
+    public void setTagModels(List<TagModel> tags) {
+        this.tagModels = tags;
     }
 
     @Override
@@ -128,11 +128,11 @@ public class NewsModel implements BaseEntity<Long> {
                 Objects.equals(createDate, newsModel.createDate) &&
                 Objects.equals(lastUpdateDate, newsModel.lastUpdateDate) &&
                 Objects.equals(authorModel, newsModel.authorModel) &&
-                Objects.equals(tagModel, newsModel.tagModel);
+                Objects.equals(tagModels, newsModel.tagModels);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, createDate, lastUpdateDate, authorModel, tagModel);
+        return Objects.hash(id, title, content, createDate, lastUpdateDate, authorModel, tagModels);
     }
 }

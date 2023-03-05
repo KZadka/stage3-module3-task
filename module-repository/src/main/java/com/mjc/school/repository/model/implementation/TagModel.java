@@ -17,8 +17,8 @@ public class TagModel implements BaseEntity<Long> {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "tagModel", fetch = FetchType.LAZY)
-    private List<NewsModel> news;
+    @ManyToMany(mappedBy = "tagModels", fetch = FetchType.LAZY)
+    private List<NewsModel> newsModels;
 
     public TagModel() {}
 
@@ -49,12 +49,12 @@ public class TagModel implements BaseEntity<Long> {
         this.name = name;
     }
 
-    public List<NewsModel> getNews() {
-        return news;
+    public List<NewsModel> getNewsModels() {
+        return newsModels;
     }
 
-    public void setNews(List<NewsModel> news) {
-        this.news = news;
+    public void setNewsModels(List<NewsModel> news) {
+        this.newsModels = news;
     }
 
     @Override
@@ -64,11 +64,11 @@ public class TagModel implements BaseEntity<Long> {
         TagModel tagModel = (TagModel) o;
         return id.equals(tagModel.id) &&
                 name.equals(tagModel.name) &&
-                Objects.equals(news, tagModel.news);
+                Objects.equals(newsModels, tagModel.newsModels);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, news);
+        return Objects.hash(id, name, newsModels);
     }
 }
