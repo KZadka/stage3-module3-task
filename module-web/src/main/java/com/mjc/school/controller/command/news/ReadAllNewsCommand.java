@@ -1,6 +1,7 @@
-package com.mjc.school.controller.command;
+package com.mjc.school.controller.command.news;
 
 import com.mjc.school.controller.BaseController;
+import com.mjc.school.controller.command.Command;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 

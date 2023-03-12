@@ -2,6 +2,8 @@ package com.mjc.school.controller.menu;
 
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.controller.command.*;
+import com.mjc.school.controller.command.author.*;
+import com.mjc.school.controller.command.news.*;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.dto.NewsDtoRequest;
