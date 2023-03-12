@@ -32,3 +32,17 @@ Jmodule-service/src/main/java/com/mjc/school/service/dto/TagDtoRequest.java,f\7
 Mmodule-service/src/main/java/com/mjc/school/service/dto/AuthorDtoRequest.java,7\8\783761345ce2dd95a3032562e42ecb28f5642e07
 {
 Kmodule-service/src/main/java/com/mjc/school/service/dto/TagDtoResponse.java,c\9\c98a8cb9e945d6ea00a8dd465619df32c063dbc4
+q
+Amodule-web/src/main/java/com/mjc/school/controller/menu/Menu.java,3\9\39bbdbeab6761b371b880061683083b229a62aaf
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+s
+Cmodule-web/src/main/java/com/mjc/school/controller/utils/Utils.java,7\b\7be493e30dd00573a98a6ee13b70ab59e45026ae
+|
+Lmodule-service/src/main/java/com/mjc/school/service/mapper/AuthorMapper.java,e\6\e602fc47d4045db3a2abf1ee12a7f8b030ca16f4
+{
+Kmodule-service/src/main/java/com/mjc/school/service/dto/NewsDtoRequest.java,b\3\b38b6ed54ba06d8ce27d271eb070b2e35626d4d9
+y
+Imodule-service/src/main/java/com/mjc/school/service/mapper/TagMapper.java,1\e\1ec673b7692d0f0c4a0362183729fbc4360e5930
+t
+Dmodule-service/src/main/java/com/mjc/school/service/BaseService.java,2\6\266d471cdb77a760e5d7f44f1c1e2651aef514ce
