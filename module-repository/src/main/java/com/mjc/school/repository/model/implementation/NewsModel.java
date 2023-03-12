@@ -38,9 +38,9 @@ public class NewsModel implements BaseEntity<Long> {
     private AuthorModel authorModel;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "news_tags",
+    @JoinTable(name = "news_tag",
             joinColumns = @JoinColumn(name = "news_id"),
-            inverseJoinColumns = @JoinColumn(name = "tags_id"))
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<TagModel> tagModels;
 
     public NewsModel(Long id, String title,
