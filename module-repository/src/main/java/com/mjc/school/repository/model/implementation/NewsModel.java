@@ -33,7 +33,7 @@ public class NewsModel implements BaseEntity<Long> {
     @LastModifiedDate
     private LocalDateTime lastUpdateDate;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private AuthorModel authorModel;
 
