@@ -28,6 +28,7 @@ subprojects {
         testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
         testImplementation "org.mockito:mockito-core:3.+"
         implementation "org.mockito:mockito-junit-jupiter:3.8.0"
+        testImplementation "org.assertj:assertj-core:3.24.2"
 
         implementation "org.postgresql:postgresql:$postgresqlVersion"
         implementation "javax.xml.bind:jaxb-api:$javaxXmlBindVersion"
