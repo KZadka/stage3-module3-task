@@ -1,46 +1,69 @@
 package com.mjc.school.service;
 
+import com.mjc.school.repository.implementation.AuthorRepository;
+import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.exception.ResourceNotFoundException;
+import com.mjc.school.service.implementation.AuthorService;
+import com.mjc.school.service.mapper.AuthorMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.when;
 
-@SpringJUnitConfig
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@ExtendWith(MockitoExtension.class)
 class AuthorServiceTest {
 
-    @Configuration
-    @ComponentScan("com.mjc.school")
-    static class Config {
+    @Mock
+    private AuthorRepository repository;
+
+    @InjectMocks
+    private AuthorService service;
+
+    private AuthorDtoRequest request;
+    private AuthorDtoResponse response;
+    private AuthorModel model;
+
+    @BeforeEach
+    void setUp() {
+        request = new AuthorDtoRequest(1L, "TestNameOne");
+
+        model = AuthorMapper.INSTANCE.authorDtoToModel(request);
+
+        response = AuthorMapper.INSTANCE.authorModelToDto(model);
     }
 
-    @Autowired
-    private BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> service;
-
     @Test
-    void givenSizeOfFullListWhenReadAllThenReturnListOfAllAuthors() {
-        int expectedSize = 20;
+    void givenSizeOfListWhenReadAllThenReturnListOfAuthors() {
+        long expectedListSize = 2;
+        AuthorDtoRequest secondRequest = new AuthorDtoRequest(2L, "TestNameTwo");
+        AuthorModel secondTestModel = AuthorMapper.INSTANCE.authorDtoToModel(secondRequest);
 
-        List<AuthorDtoResponse> authorList = service.readAll();
+        given(repository.readAll()).willReturn(List.of(model, secondTestModel));
 
-        assertEquals(expectedSize, authorList.size());
+        List<AuthorDtoResponse> testResponsesList = service.readAll();
+
+        assertEquals(expectedListSize, testResponsesList.size());
+
     }
 
     @Test
     void givenAuthorIdWhenReadAuthorByIdThenReturnAuthorDtoResponse() {
-        long expectedId = 17;
-
+        long expectedId = 1;
+        when(repository.readById(expectedId)).thenReturn(Optional.of(model));
         AuthorDtoResponse actualResponse = service.readById(expectedId);
 
         assertNotEquals(null, actualResponse);
@@ -56,31 +79,24 @@ class AuthorServiceTest {
 
     @Test
     void givenAuthorDtoRequestWhenCreateThenReturnExpectedAuthorDtoResponse() {
-        AuthorDtoResponse expected = new AuthorDtoResponse(
-               21L,
-               "Name",
-               LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS),
-               LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
-        AuthorDtoRequest request = new AuthorDtoRequest(
-                21L,
-                "Name");
-
+        given(repository.create(model)).willReturn(model);
         AuthorDtoResponse actual = service.create(request);
 
-        assertEquals(expected, actual);
+        assertEquals(response, actual);
     }
 
     @Test
     void givenAuthorDtoRequestWhenUpdateThenReturnUpdatedDtoResponse() {
-        LocalDateTime timeOfCreation = service.readById(3L).getCreateDate();
-        AuthorDtoResponse expected = new AuthorDtoResponse(
-                3L,
-                "Updated name",
-                timeOfCreation,
-                LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+
+        Long id = 1L;
+        given(repository.update(model)).willReturn(model);
+        when(repository.existById(id)).thenReturn(true);
+        AuthorDtoResponse expected = response;
+
         AuthorDtoResponse actual = service.update(new AuthorDtoRequest(
-                3L,
-                "Updated name"));
+                id,
+                "TestNameOne"));
+
 
         assertEquals(expected, actual);
     }
@@ -96,7 +112,10 @@ class AuthorServiceTest {
 
     @Test
     void givenAuthorIdWhenDeleteThenReturnTrue() {
-        assertTrue(service.deleteById(1L));
+        Long id = 1L;
+        given(repository.deleteById(id)).willReturn(true);
+        when(repository.existById(id)).thenReturn(true);
+        assertTrue(service.deleteById(id));
     }
 
     @Test
